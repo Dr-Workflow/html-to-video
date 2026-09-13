@@ -42,4 +42,4 @@ ENV HYPERFRAMES_PREVIEW_HOST=0.0.0.0
 
 EXPOSE 3005
 
-CMD ["hyperframes", "preview", "--port", "3005", "--no-open", "--background"]
+CMD ["hyperframes", "preview", "--port", "3005", "--no-open", "--foreground"]
