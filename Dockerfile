@@ -24,12 +24,10 @@ ENV PRODUCER_HEADLESS_SHELL_PATH=/usr/local/bin/chrome-headless-shell
 # Install HyperFrames CLI from npm
 RUN npm install -g hyperframes@0.8.36
 
-# Create project directory
+# Create project directory with a blank composition
 RUN mkdir -p /app/projects
 WORKDIR /app/projects
-
-# Create a default blank composition
-RUN hyperframes init default --example blank
+RUN hyperframes init . --example blank
 
 # CPU-only VPS optimizations
 ENV PRODUCER_LOW_MEMORY_MODE=1
