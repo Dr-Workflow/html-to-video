@@ -1,0 +1,20 @@
+services:
+  hyperframes:
+    build: .
+    container_name: hyperframes
+    ports:
+      - "3005:3005"
+    volumes:
+      - hf-projects:/app/projects
+      - hf-cache:/tmp/hyperframes-extract-cache
+    shm_size: "2g"
+    environment:
+      - PRODUCER_LOW_MEMORY_MODE=1
+      - PRODUCER_FORCE_SCREENSHOT=1
+      - PRODUCER_MAX_CONCURRENT_RENDERS=1
+      - HYPERFRAMES_NO_TELEMETRY=1
+    restart: unless-stopped
+
+volumes:
+  hf-projects:
+  hf-cache:
