@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Main Graphics</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;0,900;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=block" rel="stylesheet" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1920px; height: 1080px; overflow: hidden;
+        background: transparent; font-family: "Inter", sans-serif;
+      }
+      .scene { position: absolute; inset: 0; display: none; }
+      .scene.active { display: flex; }
+
+      /* Scene 1: Title card */
+      #scene-1 { align-items: center; justify-content: center; flex-direction: column; gap: 32px; }
+      #scene-1 .eyebrow { font-size: 28px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #6366f1; opacity: 0; }
+      #scene-1 .title { font-size: 120px; font-weight: 900; color: #fff; line-height: 1; letter-spacing: -0.03em; opacity: 0; }
+      #scene-1 .title .accent { color: #6366f1; font-style: italic; font-family: "Playfair Display", serif; }
+      #scene-1 .subtitle { font-size: 36px; font-weight: 400; color: rgba(255,255,255,0.6); max-width: 1200px; text-align: center; line-height: 1.5; opacity: 0; }
+
+      /* Scene 2: Kinetic words */
+      #scene-2 { align-items: center; justify-content: center; }
+      #scene-2 .word { font-size: 160px; font-weight: 900; color: #fff; opacity: 0; position: absolute; }
+      #scene-2 .word.accent { color: #6366f1; font-style: italic; font-family: "Playfair Display", serif; }
+
+      /* Scene 3: Stats */
+      #scene-3 { align-items: center; justify-content: center; flex-direction: column; gap: 48px; }
+      #scene-3 .stat { font-size: 200px; font-weight: 900; color: #6366f1; opacity: 0; }
+      #scene-3 .stat-label { font-size: 40px; font-weight: 500; color: rgba(255,255,255,0.5); opacity: 0; }
+
+      /* Scene 4: Outro */
+      #scene-4 { align-items: center; justify-content: center; flex-direction: column; gap: 24px; }
+      #scene-4 .outro { font-size: 80px; font-weight: 800; color: #fff; opacity: 0; }
+      #scene-4 .outro .accent { color: #6366f1; }
+      #scene-4 .url { font-size: 32px; font-weight: 400; color: rgba(255,255,255,0.4); opacity: 0; font-family: monospace; }
+    </style>
+  </head>
+  <body>
+    <div id="scene-1" class="scene active">
+      <div class="eyebrow" id="s1-eyebrow">HeyJoe AI</div>
+      <div class="title" id="s1-title">Kinetic <span class="accent">Type</span></div>
+      <div class="subtitle" id="s1-sub">HTML + CSS + GSAP = broadcast-quality motion graphics</div>
+    </div>
+
+    <div id="scene-2" class="scene">
+      <div class="word" id="s2-w1">CREATE</div>
+      <div class="word accent" id="s2-w2">animate</div>
+      <div class="word" id="s2-w3">RENDER</div>
+    </div>
+
+    <div id="scene-3" class="scene">
+      <div class="stat" id="s3-stat">100%</div>
+      <div class="stat-label" id="s3-label">No camera. No stock. Just code.</div>
+    </div>
+
+    <div id="scene-4" class="scene">
+      <div class="outro" id="s4-outro">HTML to <span class="accent">Video</span></div>
+      <div class="url" id="s4-url">htmlvideo.heyjoefiles.us</div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ id: "main-graphics", paused: true });
+
+      // Scene 1: Title (0-4s)
+      tl.to("#s1-eyebrow", { opacity: 1, duration: 0.4, ease: "power2.out" }, 0);
+      tl.to("#s1-title", { opacity: 1, duration: 0.6, ease: "power2.out" }, 0.2);
+      tl.to("#s1-sub", { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.6);
+      tl.to("#scene-1", { opacity: 0, duration: 0.3, ease: "power2.in" }, 3.7);
+      tl.set("#scene-1", { display: "none" }, 4);
+      tl.set("#scene-2", { display: "flex" }, 4);
+
+      // Scene 2: Kinetic words (4-8s)
+      tl.to("#s2-w1", { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.7)" }, 4);
+      tl.to("#s2-w1", { opacity: 0, scale: 0.8, duration: 0.2 }, 5);
+      tl.to("#s2-w2", { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.7)" }, 5.2);
+      tl.to("#s2-w2", { opacity: 0, scale: 0.8, duration: 0.2 }, 6.2);
+      tl.to("#s2-w3", { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.7)" }, 6.4);
+      tl.to("#s2-w3", { opacity: 0, duration: 0.2 }, 7.6);
+      tl.set("#scene-2", { display: "none" }, 8);
+      tl.set("#scene-3", { display: "flex" }, 8);
+
+      // Scene 3: Stat (8-12s)
+      tl.to("#s3-stat", { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 8);
+      tl.to("#s3-label", { opacity: 1, duration: 0.4, ease: "power2.out" }, 8.5);
+      tl.to("#scene-3", { opacity: 0, duration: 0.3 }, 11.7);
+      tl.set("#scene-3", { display: "none" }, 12);
+      tl.set("#scene-4", { display: "flex" }, 12);
+
+      // Scene 4: Outro (12-15s)
+      tl.to("#s4-outro", { opacity: 1, duration: 0.5, ease: "power2.out" }, 12);
+      tl.to("#s4-url", { opacity: 1, duration: 0.4, ease: "power2.out" }, 12.5);
+      tl.to("#scene-4", { opacity: 0, duration: 0.4 }, 14.5);
+
+      window.__timelines["main-graphics"] = tl;
+    </script>
+  </body>
+</html>

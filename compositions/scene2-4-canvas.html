@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Canvas Scene</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&display=block" rel="stylesheet" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0a0a0f; font-family: "Inter", sans-serif; }
+      .scene { position: absolute; inset: 0; display: none; }
+      .scene.active { display: flex; }
+
+      /* Scene 2: Problem statement */
+      #scene-2 { align-items: center; justify-content: center; flex-direction: column; gap: 40px; }
+      #scene-2 .headline { font-size: 72px; font-weight: 900; color: #fff; text-align: center; max-width: 1400px; line-height: 1.1; opacity: 0; }
+      #scene-2 .headline .accent { color: #6366f1; }
+      #scene-2 .sub { font-size: 32px; color: rgba(255,255,255,0.5); opacity: 0; }
+
+      /* Scene 3: Feature showcase */
+      #scene-3 { align-items: center; justify-content: center; gap: 60px; }
+      #scene-3 .feature { display: flex; flex-direction: column; gap: 16px; opacity: 0; }
+      #scene-3 .feature-icon { font-size: 56px; }
+      #scene-3 .feature-title { font-size: 36px; font-weight: 800; color: #fff; }
+      #scene-3 .feature-desc { font-size: 22px; color: rgba(255,255,255,0.6); max-width: 360px; line-height: 1.5; }
+
+      /* Scene 4: Demo highlight */
+      #scene-4 { align-items: center; justify-content: center; flex-direction: column; gap: 32px; }
+      #scene-4 .demo-title { font-size: 64px; font-weight: 900; color: #fff; opacity: 0; }
+      #scene-4 .demo-title .accent { color: #6366f1; }
+      #scene-4 .demo-sub { font-size: 36px; color: rgba(255,255,255,0.6); opacity: 0; }
+      #scene-4 .demo-stat { font-size: 120px; font-weight: 900; color: #6366f1; opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="scene-2" class="scene active">
+      <div class="headline" id="s2-headline">Video production <span class="accent">reinvented</span></div>
+      <div class="sub" id="s2-sub">No camera. No stock footage. Just HTML, CSS, and GSAP.</div>
+    </div>
+
+    <div id="scene-3" class="scene">
+      <div class="feature" id="s3-f1">
+        <div class="feature-icon">&#x1f3a8;</div>
+        <div class="feature-title">Motion Graphics</div>
+        <div class="feature-desc">Kinetic type, lower-thirds, animated backgrounds from pure HTML.</div>
+      </div>
+      <div class="feature" id="s3-f2">
+        <div class="feature-icon">&#x1f4ca;</div>
+        <div class="feature-title">Data Visuals</div>
+        <div class="feature-desc">Animated charts, counters, and statistics that tell a story.</div>
+      </div>
+      <div class="feature" id="s3-f3">
+        <div class="feature-icon">&#x1f680;</div>
+        <div class="feature-title">Product Demos</div>
+        <div class="feature-desc">Capture, annotate, and export polished promo clips.</div>
+      </div>
+    </div>
+
+    <div id="scene-4" class="scene">
+      <div class="demo-title" id="s4-title">3x <span class="accent">faster</span></div>
+      <div class="demo-stat" id="s4-stat">100%</div>
+      <div class="demo-sub" id="s4-sub">Code-driven. No render queue. No waiting.</div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ id: "scene2-4-canvas", paused: true });
+
+      // Scene 2: Problem (0-4s)
+      tl.to("#s2-headline", { opacity: 1, duration: 0.5, ease: "power2.out" }, 0);
+      tl.to("#s2-sub", { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.5);
+      tl.to("#scene-2", { opacity: 0, duration: 0.3 }, 3.7);
+      tl.set("#scene-2", { display: "none" }, 4);
+      tl.set("#scene-3", { display: "flex" }, 4);
+
+      // Scene 3: Features (4-8s)
+      tl.to("#s3-f1", { opacity: 1, duration: 0.4, ease: "power2.out" }, 4);
+      tl.to("#s3-f2", { opacity: 1, duration: 0.4, ease: "power2.out" }, 4.3);
+      tl.to("#s3-f3", { opacity: 1, duration: 0.4, ease: "power2.out" }, 4.6);
+      tl.to("#scene-3", { opacity: 0, duration: 0.3 }, 7.7);
+      tl.set("#scene-3", { display: "none" }, 8);
+      tl.set("#scene-4", { display: "flex" }, 8);
+
+      // Scene 4: Demo highlight (8-12.5s)
+      tl.to("#s4-title", { opacity: 1, duration: 0.4, ease: "power2.out" }, 8);
+      tl.to("#s4-stat", { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 8.5);
+      tl.to("#s4-sub", { opacity: 1, duration: 0.4, ease: "power2.out" }, 9);
+      tl.to("#scene-4", { opacity: 0, duration: 0.3 }, 12);
+
+      window.__timelines["scene2-4-canvas"] = tl;
+    </script>
+  </body>
+</html>

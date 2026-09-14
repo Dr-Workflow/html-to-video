@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Logo Outro</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0a0a0f; font-family: "Inter", sans-serif; }
+      .center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 32px; }
+      .logo { font-size: 100px; font-weight: 900; color: #fff; opacity: 0; letter-spacing: -0.03em; }
+      .logo .accent { color: #6366f1; }
+      .url { font-size: 36px; color: rgba(255,255,255,0.4); opacity: 0; font-family: monospace; }
+      .bar { width: 0; height: 4px; background: #6366f1; border-radius: 2px; }
+    </style>
+  </head>
+  <body>
+    <div class="center">
+      <div class="logo" id="logo">Hey<span class="accent">Joe</span> AI</div>
+      <div class="bar" id="bar"></div>
+      <div class="url" id="url">heyjoefiles.us</div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ id: "scene5-logo-outro", paused: true });
+      tl.to("#logo", { opacity: 1, duration: 0.6, ease: "power2.out" }, 0);
+      tl.to("#bar", { width: 300, duration: 0.8, ease: "power2.inOut" }, 0.4);
+      tl.to("#url", { opacity: 1, duration: 0.5, ease: "power2.out" }, 1.2);
+      tl.to(".center", { opacity: 0, duration: 0.5, ease: "power2.in" }, 5);
+      window.__timelines["scene5-logo-outro"] = tl;
+    </script>
+  </body>
+</html>
