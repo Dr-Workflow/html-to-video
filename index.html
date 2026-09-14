@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>HTML to Video — Welcome</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=block" rel="stylesheet" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1920px; height: 1080px; overflow: hidden;
+        background: #0a0a0f; font-family: "Inter", sans-serif;
+      }
+      .stage { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; }
+      #scene2, #scene3 { display: none; }
+
+      /* ── Scene 1: Title card ─────────────────── */
+      #scene1 { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .badge {
+        font-size: 14px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+        color: #6366f1; padding: 8px 20px; border: 1px solid #6366f1; border-radius: 999px;
+        opacity: 0; margin-bottom: 24px;
+      }
+      .title {
+        font-size: 96px; font-weight: 900; color: #ffffff; text-align: center;
+        opacity: 0; line-height: 1.05;
+      }
+      .title .accent { color: #6366f1; }
+      .subtitle {
+        font-size: 28px; font-weight: 400; color: #9ca3af; text-align: center;
+        opacity: 0; margin-top: 20px; max-width: 800px; line-height: 1.5;
+      }
+      .hint {
+        font-size: 18px; color: #4b5563; text-align: center;
+        opacity: 0; margin-top: 48px;
+      }
+      .hint .key {
+        display: inline-block; padding: 2px 10px; border: 1px solid #374151;
+        border-radius: 6px; font-family: monospace; font-size: 14px; color: #9ca3af;
+        margin: 0 4px;
+      }
+
+      /* ── Scene 2: Feature cards ──────────────── */
+      #scene2 { display: none; align-items: center; justify-content: center; gap: 40px; }
+      .card {
+        width: 320px; padding: 40px; border-radius: 20px;
+        background: #18181f; border: 1px solid #27272e;
+        opacity: 0; display: flex; flex-direction: column; gap: 16px;
+      }
+      .card-icon { font-size: 40px; }
+      .card-title { font-size: 22px; font-weight: 700; color: #fff; }
+      .card-desc { font-size: 15px; color: #9ca3af; line-height: 1.6; }
+
+      /* ── Scene 3: Get started ────────────────── */
+      #scene3 { display: none; flex-direction: column; align-items: center; justify-content: center; }
+      .cta-title {
+        font-size: 64px; font-weight: 800; color: #fff; text-align: center;
+        opacity: 0; line-height: 1.1;
+      }
+      .cta-sub {
+        font-size: 22px; color: #6366f1; text-align: center; opacity: 0; margin-top: 24px;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage" id="scene1" data-width="1920" data-height="1080" data-composition-id="root">
+      <div class="badge" id="badge">HeyJoe AI · Video Hub</div>
+      <div class="title" id="title">HTML to <span class="accent">Video</span></div>
+      <div class="subtitle" id="subtitle">Write HTML &amp; CSS. Animate with GSAP. Render to MP4.<br/>No camera, no stock footage — just code and creativity.</div>
+      <div class="hint" id="hint">
+        Press <span class="key">Space</span> to preview · <span class="key">Export</span> to render MP4
+      </div>
+    </div>
+
+    <div class="stage" id="scene2">
+      <div class="card" id="card1">
+        <div class="card-icon">🎨</div>
+        <div class="card-title">Motion Graphics</div>
+        <div class="card-desc">Kinetic type, logo stings, lower-thirds, and animated backgrounds — all from HTML.</div>
+      </div>
+      <div class="card" id="card2">
+        <div class="card-icon">📊</div>
+        <div class="card-title">Data Visuals</div>
+        <div class="card-desc">Charts, counters, and animated statistics that tell a story in seconds.</div>
+      </div>
+      <div class="card" id="card3">
+        <div class="card-icon">🚀</div>
+        <div class="card-title">Product Demos</div>
+        <div class="card-desc">Capture a website, add annotations, and export a polished promo clip.</div>
+      </div>
+    </div>
+
+    <div class="stage" id="scene3">
+      <div class="cta-title" id="cta-title">Ready to create?</div>
+      <div class="cta-sub" id="cta-sub">Edit this HTML → Preview → Export as MP4</div>
+    </div>
+
+    <script>
+      // ── Register the GSAP root timeline (HyperFrames convention) ──
+      window.__timelines = window.__timelines || {};
+      var root = gsap.timeline({ id: "root", paused: true });
+      window.__timelines["root"] = root;
+
+      // Scene 1: Title reveal (0–4s)
+      root.to("#badge", { opacity: 1, duration: 0.4, ease: "power2.out" }, 0);
+      root.to("#title", { opacity: 1, duration: 0.6, ease: "power2.out" }, 0.2);
+      root.to("#subtitle", { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.6);
+      root.to("#hint", { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.0);
+
+      // Transition to Scene 2 (4s)
+      root.to("#scene1", { opacity: 0, duration: 0.3, ease: "power2.in" }, 3.7);
+      root.set("#scene1", { display: "none" }, 4);
+      root.set("#scene2", { display: "flex" }, 4);
+      root.to("#card1", { opacity: 1, duration: 0.4, ease: "power2.out" }, 4);
+      root.to("#card2", { opacity: 1, duration: 0.4, ease: "power2.out" }, 4.2);
+      root.to("#card3", { opacity: 1, duration: 0.4, ease: "power2.out" }, 4.4);
+
+      // Transition to Scene 3 (8s)
+      root.to("#scene2", { opacity: 0, duration: 0.3, ease: "power2.in" }, 7.7);
+      root.set("#scene2", { display: "none" }, 8);
+      root.set("#scene3", { display: "flex" }, 8);
+      root.to("#cta-title", { opacity: 1, duration: 0.5, ease: "power2.out" }, 8);
+      root.to("#cta-sub", { opacity: 1, duration: 0.5, ease: "power2.out" }, 8.3);
+    </script>
+  </body>
+</html>

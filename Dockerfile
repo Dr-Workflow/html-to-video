@@ -24,10 +24,16 @@ ENV PRODUCER_HEADLESS_SHELL_PATH=/usr/local/bin/chrome-headless-shell
 # Install HyperFrames CLI from npm
 RUN npm install -g hyperframes@0.8.36
 
-# Create project directory with a blank composition
+# Create project directory with welcome composition
 RUN mkdir -p /app/projects
 WORKDIR /app/projects
-RUN hyperframes init . --example blank
+
+# Copy the welcome composition as the default index.html
+COPY index.html /app/projects/index.html
+
+# Copy starter templates
+RUN mkdir -p /app/projects/templates
+COPY templates/ /app/projects/templates/
 
 # CPU-only VPS optimizations
 ENV PRODUCER_LOW_MEMORY_MODE=1

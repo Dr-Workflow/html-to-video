@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Templates</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=block" rel="stylesheet" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1920px; height: 1080px; overflow: hidden;
+        background: #0a0a0f; font-family: "Inter", sans-serif;
+      }
+      .grid {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+        padding: 80px; height: 100%; align-items: center;
+      }
+      .card {
+        background: #18181f; border: 1px solid #27272e; border-radius: 20px;
+        padding: 48px; display: flex; flex-direction: column; gap: 20px;
+      }
+      .card h2 { font-size: 28px; font-weight: 700; color: #fff; }
+      .card p { font-size: 16px; color: #9ca3af; line-height: 1.6; }
+      .card .num { font-size: 14px; color: #6366f1; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
+    </style>
+  </head>
+  <body>
+    <div class="grid">
+      <div class="card">
+        <div class="num">Template 01</div>
+        <h2>Kinetic Type</h2>
+        <p>Animated typography with bold text transitions. Perfect for quotes, headlines, and social media clips.</p>
+      </div>
+      <div class="card">
+        <div class="num">Template 02</div>
+        <h2>Product Promo</h2>
+        <p>Showcase a product with smooth transitions, feature highlights, and a call-to-action ending.</p>
+      </div>
+      <div class="card">
+        <div class="num">Template 03</div>
+        <h2>Startup Pitch</h2>
+        <p>Investor-ready pitch video with problem/solution framing, metrics, and a closing brand reveal.</p>
+      </div>
+    </div>
+  </body>
+</html>
